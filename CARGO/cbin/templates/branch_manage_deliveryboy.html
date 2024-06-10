@@ -1,0 +1,130 @@
+{% include 'branchheader.html' %}
+
+<div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+
+<center>
+	<form method="post">
+		{% if data['updater'] %}
+
+
+	<table >
+
+		<h1>UPDATE DELIVERY BOYS</h1>
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>FIRST NAME</th>
+			<td><input type="text" name="fname"  class="form-control" value="{{data['updater'][0]['first_name']}}" required pattern="[a-zA-Z ]+$"></td>
+		</tr>
+		<tr>
+			<th>LAST NAME</th>
+			<td><input type="text" name="lname"  class="form-control" id="lat" value="{{data['updater'][0]['last_name']}}" required>
+			</td>
+		</tr>
+	
+		<tr>
+			<th>PHONE</th>
+			<td><input type="text" name="phone"  class="form-control" value="{{data['updater'][0]['phone']}}" required pattern="[7-9]{1}[0-9]{9}"></td>
+		</tr>
+		<tr>
+			<th>EMAIL</th>
+			<td>
+			<input type="email" name="email"  class="form-control" value="{{data['updater'][0]['email']}}" required></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="update" value="UPDATE" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+
+		{% else %}
+
+	<table >
+
+		<h1>MANAGE DELIVERY BOYS</h1>
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>FIRST NAME</th>
+			<td><input type="text" name="fname"  class="form-control" required pattern="[a-zA-Z ]+$"></td>
+		</tr>
+		<tr>
+			<th>LAST NAME</th>
+			<td><input type="text" name="lname"  class="form-control" id="lat" required pattern="[a-zA-Z ]+$">
+			</td>
+		</tr>
+	
+		<tr>
+			<th>PHONE</th>
+			<td><input type="text" name="phone"  class="form-control" required pattern="[7-9]{1}[0-9]{9}"></td>
+		</tr>
+		<tr>
+			<th>EMAIL</th>
+			<td>
+			<input type="email" name="email"  class="form-control" required></td>
+		</tr>
+		
+
+		<tr>
+			<th>USER NAME</th>
+			<td><input type="text" name="uname"  minlength="5" placeholder="User Name Must Be Atleast 5 Charecter " class="form-control" required></td>
+		</tr>
+		<tr>
+			<th>PASSWORD</th>
+			<td><input type="password" name="password"  minlength="8" placeholder="Password Must Be Atleast 8 Charecter" class="form-control" required></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="register" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+		{% if data['deliveryboys'] %}
+		<h1>DELIVERY BOYS IN YOUR BRANCH</h1>
+		<table class="table" width="600px">
+			<tr>
+				<th>FIRST NAME</th>
+				<th>LAST NAME</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+				<th>UPDATE</th>
+				<TH>DELETE</TH>
+			</tr>
+			{% for row in data['deliveryboys'] %}
+			<tr>
+				<td>{{ row['first_name'] }}</td>
+				<td>{{row ['last_name']}}</td>
+				<td>{{ row['phone']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a href="?action=update&id={{ row['login_id'] }}" class="btn btn-warning">UPDATE</a></td>
+				<td><a href="?action=delete&id={{ row['login_id'] }}" class="btn btn-danger" >DELETE</a></td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO DELIVERY BOYS IN YOUR BRANCH</h2>
+		{% endif %}
+		{% endif %}
+	</form>
+</center>
+ </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>     <!-- .tm-container-outer -->                 
+            </section>
+        </div>
+
+{% include 'footer.html' %}

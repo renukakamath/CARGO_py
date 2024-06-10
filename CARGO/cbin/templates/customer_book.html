@@ -1,0 +1,66 @@
+{% include 'customerheader.html' %}
+
+<div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+
+<form method="post">
+		<h1>BOOK CARGO</h1>
+
+	<table class="table" style="width:  700px">
+		<tr>
+			<th>WEIGHT</th>
+			<td><input type="number" name="kg"  class="form-control" placeholder="Maximum-{{data['price'][0]['maximum_weight']}}" max="{{data['price'][0]['maximum_weight']}}"></td>
+		</tr>
+		<tr>
+			<th>LENGHTH</th>
+			<td><input type="number" name="len"  class="form-control" id="lat" placeholder="Maximum-{{data['price'][0]['maximum_height']}}" max="{{data['price'][0]['maximum_height']}}">
+			</td>
+		</tr>
+		<tr>
+			<th>WIDTH</th>
+			<td><input type="number" name="width"  class="form-control" id="lat" placeholder="Maximum-{{data['price'][0]['maximum_width']}}" max="{{data['price'][0]['maximum_width']}}" ></td>	
+		</tr>
+		<tr>
+			<th>FROM LOCATION</th>
+			<td><input type="text" name="floc"  class="form-control" id="lat" ></td>	
+		</tr>
+		<tr>
+			<th>TO LOCATION</th>
+			<td><input type="text" name="tloc"  class="form-control" id="lat" ></td>	
+		</tr>
+			<tr>
+			<th>BRANCH</th>
+			
+			<td>
+				<select name="bid">
+					{% for row in data['branch'] %}
+					
+					<option value="{{row['branch_id']}}">{{row['branch_name']}}</option>
+				
+					{% endfor %}
+				</select>
+			</td>
+	
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit"></td>
+		</tr>
+	</table>
+</form>
+
+                            </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>     <!-- .tm-container-outer -->                 
+            </section>
+        </div>
+{% include 'footer.html' %}

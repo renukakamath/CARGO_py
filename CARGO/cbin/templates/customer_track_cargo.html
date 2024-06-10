@@ -1,0 +1,80 @@
+{% include 'customerheader.html' %}
+<div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+<center>
+<form method="post">
+	<form method="post">
+		{% if data['track'] %}
+		<h1>TRACK THE CARGO</h1>
+		<table>
+			<tr>
+				<th>PLACE NAME</th>
+				<th>DATE</th>
+			</tr>
+			{% for row in data['track'] %}
+			<tr>
+				<td>{{row['place_name']}}</td>
+				<td>{{row['status_date_time']}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		{% elif data['wait'] %}
+		<h1>YOU JUST BOOKED CARGO! PLEASE WAIT</h1>
+
+		{% elif data['bookings'] %}
+		<h1>CARGO BOOKING HISTORY</h1>
+		<table class="table" width="1000px">
+			<tr>
+				<th>BRANCH</th>
+				<th>WEIGHT</th>
+				<th>HEIGHT</th>
+				<th>WIDTH</th>
+				<th>FROM LOCATION</th>
+				<th>TO LOCATION</th>
+				<th>PRICE</th>
+
+			</tr>
+			{% for row in data['bookings'] %}
+			<tr>
+				<td>{{ row['branch_name'] }}</td>
+				<td>{{row ['weight']}}</td>
+				<td>{{ row['length']}}</td>
+				<td>{{row['width']}}</td>
+				<td>{{row['from_location']}}</td>
+				<td>{{row['to_location']}}</td>
+				<td>AMOUNT TO PAYED-{{row['amount']}}</td>
+				{% if row['booking_status'] !='delivered'%}
+				<td><a href="?action=track&boid={{ row['booking_id'] }}" class="btn btn-warning">Track</a></td>
+				{% else %}
+				<td>DELIVERED</td>
+				{% endif %}
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+
+		<h2>NO CARGOS BOOKED</h2>
+		{% endif %}
+
+
+	</form>
+
+</center>
+ </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>     <!-- .tm-container-outer -->                 
+            </section>
+        </div>
+
+{% include 'footer.html' %}

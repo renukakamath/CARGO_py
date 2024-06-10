@@ -1,0 +1,126 @@
+{% include 'staffheader.html' %}
+
+<div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+<center>
+<form method="post">
+
+<form method="post">
+		{% if data['updater'] %}
+
+		<h1>CONFORMATION SECTION</h1>
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>WEIGHT</th>
+			<td><input type="text" name="kg"  class="form-control" value="{{data['updater'][0]['length']}}" readonly=""></td>
+		</tr>
+		<tr>
+			<th>HEIGHT</th>
+			<td><input type="text" name="h"  class="form-control" value="{{data['updater'][0]['from_location']}}" readonly="" >
+			
+		</tr>
+		<tr>
+			<th>WIDTH</th>
+			<td><input type="text" name="w"  class="form-control" id="lat" value="{{data['updater'][0]['width']}}" readonly="">
+			
+		</tr>
+		
+		<tr>
+			<th>STARTING LOCATION</th>
+			<td><input type="taext" name="floc"  class="form-control" id="lon" value="{{data['updater'][0]['from_location']}}" readonly="" ></td>
+		</tr>
+		<tr>
+			<th>ENDING LOCATION</th>
+			<td><input type="text" name="tloc"  class="form-control" value="{{data['updater'][0]['to_location']}}" readonly=""></td>
+		</tr>
+		<tr>
+			<th>PRICE</th>
+			<td><input type="text" name="amt"  class="form-control" value="{{data['updater'][0]['minimum_price']}}" readonly=""></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="update" value="CONFORM" class="btn btn-primary"></td>
+		</tr>
+		
+	</table>
+
+
+
+		{% elif data['boy'] %}
+		<h1>ASSIGN THE CARGO</h1>
+		<table>
+			<tr>
+				<th>DELIVERY BOY</th>
+				<td><select name="dboy">
+					{% for row in data['boy'] %}
+				
+					<option value="{{row['boy_id']}}">{{row['first_name']+" "+row['last_name']}}</option>
+					{% endfor %}
+					<td colspan="2" align="center"><input type="submit" name="submit" value="ASSIGN"></td>	
+
+				</select></td>
+			</tr>
+		</table>
+
+
+{% else %}
+		{% if data['booking'] %}
+		<h1>BOOKINGS</h1>
+		<table class="table" width="1000px">
+			<tr>
+				<th>CUSTOMER NAME</th>
+				<th>PARCEL WEIGHT</th>
+				<th>PARCEL HEIGHT</th>
+				<th>PARCEL WIDTH</th>
+				<th>FROM LOCATION</th>
+				<th>TO LOCATION</th>
+				<th>STATUS</th>
+
+			</tr>
+			{% for row in data['booking'] %}
+			<tr>
+				<td>{{row['first_name']}}</td>
+				<td>{{ row['weight'] }}</td>
+				<td>{{row ['length']}}</td>
+				<td>{{ row['width']}}</td>
+				<td>{{row['from_location']}}</td>
+				<td>{{row['to_location']}}</td>
+				<td>{{row['booking_status']}}</td>
+				{% if row['booking_status']=='pending' %}
+				<td><a href="?action=update&id={{ row['booking_id'] }}" class="btn btn-warning">CONFORM</a></td>
+				{% elif row['booking_status']=='paid' %}
+				<td>PAID -{{row['amount']}}</td>
+					{% if row['boy_id'] |int==0 %}
+					<td><a href="?action2=assigndboy&id={{ row['booking_id'] }}" class="btn btn-warning">ASSIGN BOY</a></td>
+					{% else %}
+					
+					<!-- <td></td> -->
+					<!-- <td><a href="boydetails?id={{row['boy_id']}}">VIEW DELIVERY BOY</a></td> -->
+					{% endif %}
+				{% endif %}
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO BOOKINGS</h2>
+		{% endif %}
+		{% endif %}
+	</form>
+
+</center>
+ </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>     <!-- .tm-container-outer -->                 
+            </section>
+        </div>
+{% include 'footer.html' %}

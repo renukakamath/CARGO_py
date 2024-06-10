@@ -1,0 +1,93 @@
+{% include 'customerheader.html' %}
+
+<div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+
+<center>
+<form method="post">
+	<form method="post">
+
+	{% if data['amt'] %}
+	<h1>PAY AND COMPLETE YOUR BOOKING</h1>
+		<table class="table" style="width: 600px">
+			<tr>
+				<th colspan="2" align="left">Payment Details</th>
+			</tr>
+			<tr>
+				<th align="left">CARD NUMBER</th>
+				<td colspan="2"><input type="text" name="cardno" class="form-control"><td>
+			</tr>
+			<tr>
+				<th>EXP DATE</th>
+				<th align="center">CV</th>
+			</tr>
+			<tr>
+				<td><input type="text" name="monthdate" class="form-control"></td>
+				<td><input type="text" name="cv" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>AMOUNT</th>
+				<td class="btn btn-warning" align="center">{{data['amt']}}</td>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="pay" value="CONFIRM PAYMENT" class="btn btn-primary"></td>
+			</tr>
+		</table>
+	{% else %}
+
+
+		{% if data['bookings'] %}
+		<h1>CARGO BOOKING </h1>
+		<table class="table" width="1000px">
+			<tr>
+				<th>BRANCH</th>
+				<th>WEIGHT</th>
+				<th>HEIGHT</th>
+				<th>WIDTH</th>
+				<th>FROM LOCATION</th>
+				<th>TO LOCATION</th>
+				<th>PRICE</th>
+
+			</tr>
+			{% for row in data['bookings'] %}
+			<tr>
+				<td>{{ row['branch_name'] }}</td>
+				<td>{{row ['weight']}}</td>
+				<td>{{ row['length']}}</td>
+				<td>{{row['width']}}</td>
+				<td>{{row['from_location']}}</td>
+				<td>{{row['to_location']}}</td>
+				{% if row['amount']!='pending' %}
+				<td>AMOUNT TO PAY-{{row['amount']}}</td>
+				<td><a href="?action=pay&boid={{ row['booking_id'] }}&amt={{row['amount']}}" class="btn btn-warning">PAY</a></td>
+				{% else %}
+				<td>CONFIRMATION PENDING</td>
+				{% endif %}
+				<td>{{row['booking_status']}}</td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO CARGO BOOKINGS</h2>
+		{% endif %}
+	{% endif %}
+
+	</form>
+
+</center>
+
+ </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>     <!-- .tm-container-outer -->                 
+            </section>
+        </div>
+{% include 'footer.html' %}

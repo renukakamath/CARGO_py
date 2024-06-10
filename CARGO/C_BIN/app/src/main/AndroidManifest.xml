@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.c_bin">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logocargo"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/logocargo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.C_BIN"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Userviewbookedcargo"></activity>
+        <activity android:name=".Userbookacargo" />
+        <activity android:name=".Userviewrating" />
+        <activity android:name=".Usercheckprices" />
+        <activity android:name=".Userviewnearbycargoservices" />
+        <activity android:name=".Deliveryviewassignedcargos" />
+        <activity android:name=".Deliveryvieworderspickedup" />
+        <activity android:name=".Deliveryhome" />
+        <activity android:name=".Login" />
+        <activity android:name=".customerrating" />
+        <activity android:name=".Usermakepayment"/>
+        <activity android:name=".Userviewdeliveryboys"/>
+        <activity android:name=".Userhome" />
+        <activity android:name=".Userregister" />
+        <activity android:name=".Usersendcomplaints" />
+        <activity android:name=".Ipsettings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+
+        <service android:name=".LocationService" />
+    </application>
+
+</manifest>

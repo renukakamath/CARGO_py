@@ -1,0 +1,55 @@
+{% include 'customerheader.html' %}
+
+<div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+
+<center>
+<form method="post">
+		{% if data['cargo'] %}
+		<h1>CARGO SERVICES IN OUR SYSTEM</h1>
+		<table class="table" width="1000px">
+			<tr>
+				<th>MAXIMUM WEIGHT</th>
+				<th>MAXIMUM HEIGHT</th>
+				<th>MAXIMUM WIDTH</th>
+				<th>MAXIMUM DISTANCE</th>
+				<th>PRICE</th>
+				<th>BOOK</th>
+	
+			</tr>
+			{% for row in data['cargo'] %}
+			<tr>
+				<td>{{ row['maximum_weight'] }}</td>
+				<td>{{row ['maximum_width']}}</td>
+				<td>{{ row['maximum_height']}}</td>
+				<td>{{row['maximum_width']}}</td>
+				<td>{{row['maximum_distance']}}</td>
+				<td>{{row['minimum_price']}}</td>
+				<td><a href="customer_book?id={{ row['price_id'] }}" class="btn btn-warning">BOOK</a></td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO CARGO SERVICES IN OUR SYSTEM</h2>
+		{% endif %}
+
+	</form>
+
+</center>
+ </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>     <!-- .tm-container-outer -->                 
+            </section>
+        </div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,58 @@
+{% include 'branchheader.html' %}
+
+<div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+<center>
+<form method="post">
+		{% if data['booking'] %}
+		<h1>BOOKINGS</h1>
+		<table class="table" width="1000px">
+			<tr>
+				<th>CUSTOMER NAME</th>
+				<th>PARCEL HEIGHT</th>
+				<th>PARCEL WIDTH</th>
+				<th>FROM LOCATION</th>
+				<th>TO LOCATION</th>
+				<th>PRICE</th>
+				<th>BOOKING STATUS</th>
+			</tr>
+			{% for row in data['booking'] %}
+			<tr>
+				<td>{{ row['weight'] }}</td>
+				<td>{{row ['length']}}</td>
+				<td>{{ row['width']}}</td>
+				<td>{{row['from_location']}}</td>
+				<td>{{row['to_location']}}</td>
+				{% if row['amount']=='pending' %}
+				<td>NOT CONFORMED</td>
+				{% else %}
+				<td>{{row['amount']}}</td>
+				{% endif %}
+				<td>{{row['booking_status']}}</td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO BOOKINGS</h2>
+		{% endif %}
+
+	</form>
+
+</center>
+ </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>     <!-- .tm-container-outer -->                 
+            </section>
+        </div>
+
+{% include 'footer.html' %}
